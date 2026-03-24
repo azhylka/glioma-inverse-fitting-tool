@@ -7,7 +7,7 @@ import time
 from scipy import ndimage
 import nibabel as nib
 import matplotlib.pyplot as plt
-import cmaesDTI
+import cmaesFixel
 import tools
 from scipy.ndimage import binary_dilation
         
@@ -56,7 +56,7 @@ def run(edema, necrotic, enhancing, affine, diffusionTensors, brainmask, resultp
     settings["resolution_factor"] = { 0: 0.5, 0.3:0.6, 0.8: 0.8, 0.9: 1.0}
     settings["generations"] =  int(1000 /9) +1 # there are 9 samples in each step
 
-    solver = cmaesDTI.CmaesSolver(settings, diffusionTensors, edema, enhancing, necrotic)
+    solver = cmaesFixel.CmaesSolver(settings, diffusionTensors, edema, enhancing, necrotic)
     resultTumor, resultDict = solver.run()
 
     # save results
